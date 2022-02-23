@@ -22,6 +22,12 @@ This project uses different methods and techniques of Quantum computing and Quan
 
 and classical methods as  ANN, LSTM, Optimizers (Cobyla) 
 
+<center><img src="./Images/methodoly.png" width="800"></center>
+
+
+For the case of the Hibryd LSTM we use proposal to design:
+
+<center><img src="./Images/proposal_diagrams.png" width="800"></center>
 
 # References 
 [1] Mugel, S., Kuchkovsky, C., Sánchez, E., Fernández-Lorenzo, S., Luis-Hita, J., Lizaso, E., & Orús, R. (2022). Dynamic portfolio optimization with real datasets using quantum processors and quantum-inspired tensor networks. Physical Review Research, 4(1), 1–13. https://doi.org/10.1103/PhysRevResearch.4.013006
