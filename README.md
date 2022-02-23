@@ -9,5 +9,5 @@ For portfolio optimization, we use the modern portfolio theory where we is wante
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
-
+# References 
 [1] Mugel, S., Kuchkovsky, C., Sánchez, E., Fernández-Lorenzo, S., Luis-Hita, J., Lizaso, E., & Orús, R. (2022). Dynamic portfolio optimization with real datasets using quantum processors and quantum-inspired tensor networks. Physical Review Research, 4(1), 1–13. https://doi.org/10.1103/PhysRevResearch.4.013006
