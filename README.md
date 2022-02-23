@@ -29,6 +29,23 @@ For the case of the Hibryd LSTM we use proposal to design:
 
 <center><img src="./Images/proposal_diagrams.png" width="800"></center>
 
+# Prelimineries result 
+
+## using the first layer as  QNN
+<center><img src="./Images/pred_1.png" width="800"></center>
+
+
+## using the last layer as  QNN
+<center><img src="./Images/pred_f.png" width="800"></center>
+
+## mock data for the portfolio part
+<center><img src="./Images/proposal_1.png" width="800"></center>
+
+
+# Progress
+
+Positive results for each module separately, next step, connect the results of each block and compare the cases of each with their respective classical equivalence.
+
 # References 
 [1] Mugel, S., Kuchkovsky, C., Sánchez, E., Fernández-Lorenzo, S., Luis-Hita, J., Lizaso, E., & Orús, R. (2022). Dynamic portfolio optimization with real datasets using quantum processors and quantum-inspired tensor networks. Physical Review Research, 4(1), 1–13. https://doi.org/10.1103/PhysRevResearch.4.013006
 [2] Chen, Samuel & Yoo, Shinjae & Fang, Yao-Lung. (2020). Quantum Long Short-Term Memory. 
