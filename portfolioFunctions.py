@@ -19,53 +19,7 @@ from qiskit.providers.basicaer import QasmSimulatorPy  # local simulator
 from qiskit.algorithms import VQE, QAOA
 
 
-provider = IBMQ.load_account()
-# provider = IBMQ.get_provider(hub='ibm-q-research', group='guanajuato-1',project='main')
-backend = provider.get_backend("ibmq_qasm_simulator")
-
-
-def op_adj_mat(op: PauliSumOp) -> np.array:
-    """Extract the adjacency matrix from the op."""
-    adj_mat = np.zeros((op.num_qubits, op.num_qubits))
-    for pauli, coeff in op.primitive.to_list():
-        idx = tuple([i for i, c in enumerate(pauli[::-1]) if c == "Z"])  # index of Z
-        adj_mat[idx[0], idx[1]], adj_mat[idx[1], idx[0]] = np.real(coeff), np.real(coeff)
-
-    return adj_mat
-
-
-def get_cost(bit_str: str, adj_mat: np.array) -> float:
-    """Return the cut value of the bit string."""
-    n, x = len(bit_str), [int(bit) for bit in bit_str[::-1]]
-    cost = 0
-    for i in range(n):
-        for j in range(n):
-            cost += adj_mat[i, j] * x[i] * (1 - x[j])
-
-    return cost
-
-
-def get_cut_distribution(result) -> dict:
-    """Extract the cut distribution from the result.
-
-    Returns:
-        A dict of cut value: probability.
-    """
-
-    adj_mat = op_adj_mat(PauliSumOp.from_list(result["inputs"]["operator"]))
-
-    state_results = []
-    for bit_str, amp in result["eigenstate"].items():
-        state_results.append((bit_str, get_cost(bit_str, adj_mat), amp ** 2 * 100))
-
-    vals = defaultdict(int)
-
-    for res in state_results:
-        vals[res[1]] += res[2]
-
-    return dict(vals)
-
-def mu_fun(data, periods):
+def mu_fun(data, holding_period):
     """
     assets’ forecast returns at time t
 
@@ -73,30 +27,32 @@ def mu_fun(data, periods):
     ----------
     data : np.array(num_time_steps)
         Price of the asset.
-    t: periods to divide the data.
+    holding_period: period to divide the data.
 
     Returns
     -------
     None.
 
     """
-    n, l = data.shape
+    min_t = min([len(d) for d in data])
+    num_assets = len(data)
     mu = []
-    for i in range(l-1):
-        mu.append([data[j,i+1]/data[j,i] - 1 if data[j,i] != 0 else 0 for j in range(n)])
+    for asset in range(num_assets):
+        mu.append([data[asset][t+1]/data[asset][t] - 1 if data[asset][t] != 0 else 1 for t in range(min_t-1)])
     mu = np.array(mu)
-    split = l // periods
-    mus =  [mu[i*split:(i+1)*split].mean(axis=0) for i in range(periods)]
+    split =  min_t // holding_period
+    mus = np.array([mu[:,i * holding_period:(i+1) * holding_period].sum(axis=1) for i in range(split)])
     return np.array(mus)
 
-def cov_matrix(data, periods):
-    n, l = data.shape
+def cov_matrix(data, holding_period):
+    min_t = min([len(d) for d in data])
+    num_assets = len(data)
     mu = []
-    for i in range(l-1):
-        mu.append([data[j,i+1]/data[j,i] - 1 if data[j,i] != 0 else 0 for j in range(n)])
+    for asset in range(num_assets):
+        mu.append([data[asset][t+1]/data[asset][t] - 1 if data[asset][t] != 0 else 1 for t in range(min_t-1)])
     mu = np.array(mu)
-    split = l // periods
-    cov =  [np.cov(mu[i*split:(i+1)*split], rowvar=False) for i in range(periods)]
+    split =  min_t // holding_period
+    cov =  [np.cov(mu[:,i*holding_period:(i+1)*holding_period], rowvar=True) for i in range(split)]
     return np.array(cov)
 
 def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rho=1.0):
@@ -146,8 +102,8 @@ def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rh
     return op
 
 
-def Optimization_QAOA(qubo, reps=1, optimizer=SPSA(maxiter=50), backend=backend,
-                      shots=1024, alpha=0.75, provider=provider, local=False):
+def Optimization_QAOA(qubo, reps=1, optimizer=SPSA(maxiter=50), backend=None,
+                      shots=1024, alpha=0.75, provider=None, local=False):
     intermediate_info = {'nfev': [],
                          'parameters': [],
                          'stddev': [],
@@ -165,13 +121,14 @@ def Optimization_QAOA(qubo, reps=1, optimizer=SPSA(maxiter=50), backend=backend,
                         callback=callback)
     else:
         qaoa_mes = QAOAClient(provider=provider, backend=backend, reps=reps, alpha=alpha,
-                             shots=shots, callback=callback, optimizer=optimizer)
+                             shots=shots, callback=callback, optimizer=optimizer,
+                             optimization_level=3)
     qaoa = MinimumEigenOptimizer(qaoa_mes)
     result = qaoa.solve(qubo)
     return result, intermediate_info
 
-def Optimization_VQE(qubo, ansatz, optimizer=SPSA(maxiter=50), backend=backend,
-                     shots=1024, provider=provider, local=False):
+def Optimization_VQE(qubo, ansatz, optimizer=SPSA(maxiter=50), backend=None,
+                     shots=1024, provider=None, local=False):
 
     intermediate_info = {'nfev': [],
                          'parameters': [],
@@ -195,16 +152,16 @@ def Optimization_VQE(qubo, ansatz, optimizer=SPSA(maxiter=50), backend=backend,
     result = vqe.solve(qubo)
     return result, intermediate_info
 
-def transaction_costs(w, v, periods):
-    w = w.reshape(periods,-1)    
+def transaction_costs(w, v, periods, max_invest):
+    w = max_invest * w
     cost = [v * np.sum(w[0])]
     for i in range(periods-1):
         cost.append(v * np.sum(np.abs(w[i+1] - w[i])))
     return np.array(cost) 
 
-def profits(w, mu, v, periods):
-    w = w.reshape(periods, -1) 
-    cost = transaction_costs(w, v, periods)
+def profits(w, mu, v, periods, max_invest):
+    cost = transaction_costs(w, v, periods, max_invest)
+    w = max_invest * w
     profit = []
     for i in range(periods):
         profit.append(mu[i].T @ w[i] - cost[i])
