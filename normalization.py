@@ -57,7 +57,7 @@ class Normalization():
         y = np.array(y)
         return x,y 
         
-    def preprocessing(self,porcentage=0.7,days=30,flag_pca=False):
+    def preprocessing(self,porcentage=0.7,days=30,flag_pca=False,dataset='train'):
         ## format of CSV file: Date,Open,High,Low,Close,Adj Close,Volume
         df = pd.read_csv(self.address_original+self.filename+'.csv') # using pandas to read the csv file
         del df["Date"] #delete the column Date
@@ -90,13 +90,15 @@ class Normalization():
         dataset_train = scaler.fit_transform(dataset_train)
         dataset_test = scaler.transform(dataset_test)
         
-        
-        df_output = pd.read_csv(self.address+self.filename+'_train.csv')
+        if dataset == 'train':
+	        df_output = pd.read_csv(self.address+self.filename+'_train.csv')
+
+        else:
+        	df_output = pd.read_csv(self.address+self.filename+'_test.csv')
         predictions = scaler.inverse_transform(np.array(df_output['y_pred']).reshape(-1,1))
         y_test_scaled = scaler.inverse_transform(np.array(df_output['y_real']).reshape(-1, 1))
 
         results = np.dstack((y_test_scaled,predictions))
-        print(results)
         return results
         
 
@@ -106,4 +108,6 @@ if __name__ == "__main__":
 	address_original='Data/Stocks/'
 	for name in name_stocks:
 		nm = Normalization(filename=name)
-		np.save(address+'data_'+name+'.npy', nm)
+		for ds in ['train','test']:
+			nm.preprocessing(porcentage=0.7,days=30,flag_pca=False,dataset=ds)
+			np.save(address+'data_'+name+'_'+ds+'.npy', nm)
