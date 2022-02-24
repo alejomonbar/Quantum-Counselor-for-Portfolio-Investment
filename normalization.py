@@ -109,5 +109,6 @@ if __name__ == "__main__":
 	for name in name_stocks:
 		nm = Normalization(filename=name)
 		for ds in ['train','test']:
-			nm.preprocessing(porcentage=0.7,days=30,flag_pca=False,dataset=ds)
-			np.save(address+'data_'+name+'_'+ds+'.npy', nm)
+			result = nm.preprocessing(porcentage=0.7,days=30,flag_pca=False,dataset=ds)
+			print(result)
+			np.save(address+'data_'+name+'_'+ds+'.npy', result)
