@@ -8,13 +8,9 @@ Created on Fri Feb 18 11:52:37 2022
 import numpy as np
 from docplex.mp.model import Model
 from qiskit_optimization.translators import from_docplex_mp
-from collections import defaultdict
-from qiskit.opflow import PauliSumOp
 from qiskit_optimization.runtime import QAOAClient, VQEClient
 from qiskit.algorithms.optimizers import SPSA
-from qiskit_optimization.algorithms import MinimumEigenOptimizer, CplexOptimizer
-from qiskit import IBMQ
-from qiskit.circuit.library import TwoLocal
+from qiskit_optimization.algorithms import MinimumEigenOptimizer
 from qiskit.providers.basicaer import QasmSimulatorPy  # local simulator
 from qiskit.algorithms import VQE, QAOA
 
@@ -55,7 +51,7 @@ def cov_matrix(data, holding_period):
     cov =  [np.cov(mu[:,i*holding_period:(i+1)*holding_period], rowvar=True) for i in range(split)]
     return np.array(cov)
 
-def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rho=1.0):
+def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rho=1.0, simplified=False):
     """
     
 
@@ -96,8 +92,10 @@ def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rh
         if i > 0:
             dw = [max_invest[j] * (w[i][j] - w[i-1][j]) for j in range(num_assets)]
             transaction_cost += Lambda * np.dot(dw, dw)
-        
-    mdl.minimize(0.5 * risk_aversion * risk - returns + transaction_cost + rho * eq_constraint)
+    if simplified:
+        mdl.minimize(0.5 * risk_aversion * risk - returns)
+    else:
+        mdl.minimize(0.5 * risk_aversion * risk - returns + transaction_cost + rho * eq_constraint)
     op = from_docplex_mp(mdl)
     return op
 
