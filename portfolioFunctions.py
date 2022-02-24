@@ -99,6 +99,65 @@ def portfolioOptimization(mu, sigma, risk_aversion, max_invest, Lambda=0.001, rh
     op = from_docplex_mp(mdl)
     return op
 
+def portfolioOptimization_NewApproach(mu, sigma, risk_aversion, kappa, max_invest, U,
+                                      beta=0.1, Lambda=0.001, rho=0.1, simplified=False):
+    """
+    
+
+    Parameters
+    ----------
+    mu : list
+        assets’ forecast returns.
+    sigma : matrix
+        the assets’ covariance
+    kappa: list[float]
+        mean relative error of the prediction vs the data for the case test
+        of the QNN training
+    risk_aversion : float
+        risk aversion.
+    max_invest : list[float]
+        percentage of individual assets maximum invesment. between (0,1]
+    beta: float
+        Lagrange multiplier of the forecasting risk
+    Lambda: floar
+        tranasaction cost multiplier
+    rho: Multiplier of the investment restriction that the budget should be 
+        equal to the investment.
+    U: List[float]
+        the mean value of mu value for each asset from a historical standpoint.
+    
+    Returns
+    -------
+    op : Docplex file.
+        Quadratic program encoding the optimization.
+
+    """
+    
+    periods, num_assets = mu.shape
+    mdl = Model("portfolioOptimization")
+    w = [mdl.binary_var_list(num_assets, name=f"w{i}") for i in range(periods)] 
+    # w is a variable decision that tells if invest or not in some specific asset at an specific time
+    risk = 0
+    returns = 0
+    eq_constraint = 0
+    risk_forecasting = 0 # Forecasting associated risk
+    transaction_cost = Lambda * max_invest[0] * np.dot(w[0],w[0])
+    for i in range(periods):
+        risk += (max_invest * w[i]).T @ sigma[i] @ (max_invest * w[i])
+        risk_forecasting += kappa.T @ (max_invest * w[i])
+        returns += np.dot(mu[i], max_invest * w[i])
+        eq_constraint += (np.sum(kappa)/np.sum(mu[i]))*(mdl.sum(max_invest * w[i]) - 1) ** 2 
+        if i > 0:
+            dw = [max_invest[j] * (w[i][j] - w[i-1][j]) for j in range(num_assets)]
+            transaction_cost += Lambda * np.dot(dw, dw)
+    if simplified:
+        mdl.minimize(0.5 * risk_aversion * risk - returns)
+    else:
+        mdl.minimize(0.5 * risk_aversion * risk - returns + transaction_cost +
+                     rho * eq_constraint + beta * risk_forecasting)
+    op = from_docplex_mp(mdl)
+    return op
+
 
 def Optimization_QAOA(qubo, reps=1, optimizer=SPSA(maxiter=50), backend=None,
                       shots=1024, alpha=0.75, provider=None, local=False):
