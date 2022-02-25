@@ -17,6 +17,9 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import scale
 from sklearn.preprocessing import MinMaxScaler
+from keras.models import Sequential, load_model
+from sklearn.metrics import mean_absolute_error
+
 
 # Tensorflow Quantum 
 from cirq.contrib.svg import SVGCircuit
@@ -24,12 +27,6 @@ import tensorflow_quantum as tfq
 import tensorflow as tf
 import cirq
 import sympy
-from keras.models import Sequential, load_model
-# Configuración warnings
-# ==============================================================================
-import warnings
-warnings.filterwarnings('ignore')
-from sklearn.metrics import mean_absolute_error
 
 # classical preprocessing
 # for this class we need only the path and filename for our classical data
@@ -42,7 +39,7 @@ from sklearn.metrics import mean_absolute_error
 
 
 class ClassicalPreprocessing():
-    def __init__(self, filename='AAPL', address='price/raw/'): # read a default file
+    def __init__(self, filename='AAPL', address='Data/Stocks/'): # read a default file
         self.filename = filename
         self.address = address
 

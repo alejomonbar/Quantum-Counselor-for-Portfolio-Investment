@@ -8,9 +8,38 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 
 ### Requirements
 
+A library was built with the name tfqml.py to store all the dependencies, classes and methods that are used in this work, these classes are
+- ClassicalPreprocessing
+	- create_dataset()
+	- preprocessing() 
+- QuantumPreprocessing
+	- convert2circuit()
+	- data2qubits()
+	- print_circuit()
+- CircuitLayer
+	- add_layer()
+- QuantumModel
+	- quantum_circuit()
+
+and the methods 
+- visualization() 
+- save_data()
+
+
+the dependencies are:
+- numpy: 1.20.1
+- pandas: 1.2.3
+- matplotlib: 3.4.1
+- sklearn: 0.24.1
+- cirq : 0.13.1
+- tensorflow_quantum: 0.6.1
+- tensorflow: 2.7.0
+- sympy: 1.7.1
+- pennylane: 0.21.0
 - qiskit version:  0.19.2
 - qiskit_optimization version:  0.3.1
 - docplex version:  2.22.213
+
 
 # Outline
 
