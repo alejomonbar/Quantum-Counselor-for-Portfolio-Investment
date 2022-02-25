@@ -33,12 +33,49 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 
 # 1. Stocks forecasting using a QNN
 
+We design a quantum circuit  for encoding all the values in the data set, using 30 data per instance with this proposal we reduce to an output of 10.
+
+<center><img src="./Images/encoding.png" width="800"></center>
+
+The ansatz for the QNN is using the following structure, and using for the mdoel 2 layers of this ansatz.
+
+
+<center><img src="./Images/qvc_layer.png " width="800"></center>
+
+
+we design two proposal of solutions with this quantum layer.
+
+<center><img src="./Images/models.png" width="800"></center>
+
+
+Using the minimum  parameters for predict the stock.
+
+<center><img src="./Images/models_minimal.png" width="800"></center>
+
+
+One result of the  classical minimal  model
+
+
+<center><img src="./Images/pred_min_8.png " width="800"></center>
+
+
+One result of the  hybrid minimal  model
+
+
+<center><img src="./Images/pred_min_8_q.png " width="800"></center>
+
+
+Using more parameters to obtain the less error for all the stocks.
+
 <center><img src="./Images/Stock_predictions.png" width="800"></center>
+
+
 
 
 # 2. Portfolio optimization
 
-For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or method in the work of Mugel et al. [<b>[1]<i>](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
+For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or 
+hod in the work of Mugel et al. [<b>[1]<i>](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
@@ -52,7 +89,7 @@ This project uses different methods and techniques of Quantum computing and Quan
 
 and classical methods as  ANN, LSTM, Optimizers (Cobyla) 
 
-<center><img src="./Images/methodoly.png" width="800"></center>
+<center><img src="./Images/methodology.png" width="800"></center>
 
 
 For the case of the Hibryd LSTM we use proposal to design:
