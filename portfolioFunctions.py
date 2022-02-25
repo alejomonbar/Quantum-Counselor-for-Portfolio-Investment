@@ -13,7 +13,7 @@ from qiskit.algorithms.optimizers import SPSA
 from qiskit_optimization.algorithms import MinimumEigenOptimizer
 from qiskit.providers.basicaer import QasmSimulatorPy  # local simulator
 from qiskit.algorithms import VQE, QAOA
-
+import matplotlib.pyplot as plt
 
 def mu_fun(data, holding_period):
     """
@@ -223,4 +223,31 @@ def profits(w, mu, v, periods, max_invest):
     for i in range(periods):
         profit.append(mu[i].T @ w[i] - cost[i])
     return np.array(profit)
+
+def get_figure(items_in_bins, weights, max_weight, title=None):
+    """Get plot of the solution of the Bin Packing Problem.
+
+    Args:
+        result : The calculated result of the problem
+
+    Returns:
+        fig: A plot of the solution, where x and y represent the bins and
+        sum of the weights respectively.
+    """
+    colors = plt.cm.get_cmap("jet", len(weights))
+    num_bins = len(items_in_bins)
+    fig, axes = plt.subplots()
+    for _, bin_i in enumerate(items_in_bins):
+        sum_items = 0
+        for item in bin_i:
+            axes.bar(_, weights[item], bottom=sum_items, label=f"Item {item}", color=colors(item))
+            sum_items += weights[item]
+    axes.hlines(max_weight, -0.5, num_bins - 0.5, linestyle="--", color="tab:red", label="Max Weight")
+    axes.set_xticks(np.arange(num_bins))
+    axes.set_xlabel("Bin")
+    axes.set_ylabel("Weight")
+    axes.legend()
+    if title:
+        axes.set_title(title)
+    return fig
 
