@@ -1,5 +1,5 @@
 # Introduction
-
+Solving the portfolio optimization is computationally costly. Finding the optimal solution requires solving problems of N (number of assets) x Nq (number of qubits to represent the maximum investment on individual asset) variables times the number of periods, considering the case where the transaction cost is not present.
 
 # Quantum Counselor for Portfolio Investment
 The Quantum Counselor for portfolio investment is a tool with two main objectives: forecasting the trend of assets price and optimizing portfolio returns both using quantum computing techniques. For the case of the forecasting method, we use a hybrid method for a Quantum neural network (**QNN**) that combines a deep learning model of classical LSTM layers with quantum layers. For the case of portfolio optimization, we convert the optimization problem into a Quadratic unconstrained binary optimization (**QUBO**) problem and using the quantum algorithms of Quantum Approximate Optimization Algorithm (**QAOA**) and the variational quantum eigensolver (**VQE**) solve the problem. Additionally, we use the classical solver CPLEX for comparison with the other two methods. Both tools are deeply connected because the forecasted price of the different assets is used for the optimization protfolio cost function construction.
@@ -46,6 +46,9 @@ the dependencies are:
 
 
 3. A novel approach for the Portfolio Optimization
+
+
+4. Conclusion and Future Work
 
 
 4. References
