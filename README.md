@@ -39,14 +39,14 @@ the dependencies are:
 [stock_price_hibryd_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm.ipynb)
 [stock_price_hibryd_algorithm_with_noise.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm_with_noise.ipynb)
 [stock_price_hybrid_quantum_fair_value.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hybrid_quantum_fair_value.ipynb)
-[pennylane_stock_price_hybrid_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/pennylane_stock_price_hybrid_algorithm.ipynb)
-
-**Functions: ** [tfqml.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/tfqml.py)
+[pennylane_stock_price_hybrid_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/pennylane_stock_price_hybrid_algorithm.ipynb) 
+**Functions:** [tfqml.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/tfqml.py)
 [quantum_stock_price_simulation_mean.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/quantum_stock_price_simulation_mean.py)
 [normalization.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/normalization)
 
 
-2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) **Functions: ** [portfolioFunctions.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/portfolioFunctions.py)
+2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) 
+**Functions:** [portfolioFunctions.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/portfolioFunctions.py)
 
     2.1 Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
@@ -221,8 +221,8 @@ Finally, Fig. 4 shows the profit made with the method described in section 2 and
 </figure>
 <br>
 <br>
-# Conclusions and future work
 
+# Conclusions and future work
 We have come up with a QNN model capable of forecasting the price trend for different assets. This model presents some advantages when compared with classical approaches.
 
 We implement satisfactorily the problem of the optimal portfolio using qiskit with two quantum solvers QAOA and VQE, and we compare the results with a classical solver CPLEX. Even though we select a small number of maximal iterations, the quantum models come to the optimal solution.
