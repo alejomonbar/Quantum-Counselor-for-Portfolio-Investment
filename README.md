@@ -206,7 +206,15 @@ Finally, Fig. 4 shows the profit made with the method described in section 2 and
 </figure>
 <br>
 <br>
+# Conclusions and future work
 
+We have come up with a QNN model capable of forecasting the price trend for different assets. This model presents some advantages when compared with classical approaches.
+
+We implement satisfactorily the problem of the optimal portfolio using qiskit with two quantum solvers QAOA and VQE, and we compare the results with a classical solver CPLEX. Even though we select a small number of maximal iterations, the quantum models come to the optimal solution.
+
+We implement a new approach for the objective function called the budget increment opportunity, where if there is a great opportunity of investment (high bare return and low uncertainty in the forecasting) the budget constraint becomes weak. This approach allows us to get a considerable increment in profits.
+
+For the next work, we want to implement these methods on real hardware. Unfortunately, we couldn’t make it because of some technical difficulties with the two backends where we tried it. Additionally, we want to add fundamental analysis as input to the QNN, to explore new ways of improving the forecasting ability.
 
 # References 
 [1] Mugel, S., Kuchkovsky, C., Sánchez, E., Fernández-Lorenzo, S., Luis-Hita, J., Lizaso, E., & Orús, R. (2022). Dynamic portfolio optimization with real datasets using quantum processors and quantum-inspired tensor networks. Physical Review Research, 4(1), 1–13. https://doi.org/10.1103/PhysRevResearch.4.013006.
