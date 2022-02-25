@@ -34,7 +34,7 @@ the dependencies are:
 1. Stocks forecasting using a QNN
 
 
-2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb)
+2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) **Functions: ** [portfolioFunctions.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/portfolioFunctions.py)
 
     2.1 Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
