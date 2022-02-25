@@ -65,6 +65,11 @@ One result of the  hybrid minimal  model
 <center><img src="./Images/pred_min_8_q.png " width="800"></center>
 
 
+Error between Classic and our  Hybrid proposal
+<center><img src="./Images/error_models.png" width="800"></center>
+
+
+
 Using more parameters to obtain the less error for all the stocks.
 
 <center><img src="./Images/Stock_predictions.png" width="800"></center>
