@@ -6,6 +6,12 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 
 <center><img src="./Images/Diagram2.png" width="900"></center>
 
+### Requirements
+
+- qiskit version:  0.19.2
+- qiskit_optimization version:  0.3.1
+- docplex version:  2.22.213
+
 # Outline
 
 1. Stocks forecasting using a QNN
@@ -109,11 +115,26 @@ Using more parameters to obtain the less error for all the stocks.
 
 # 2. Portfolio optimization
 
-For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or 
-hod in the work of Mugel et al. [<b>[1]<i>](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
+The results of three portfolio cases are presented in this section: 
+
+- XS model with 3 stocks and 2 periods of time
+- S model with 5 stocks and 3 periods of time
+- M model with 7 stocks and 3 periods of time.
+
+For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or cost function in the work of Mugel et al. [[1]](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
+The equation shown above is encoded using the function *Model* from **docplex** a classical library from IBM for optimization problems. Next, using the *qiskit_optimization* function *QuadraticProgramToQubo*, the problem is translated to the **QUBO** representation. The **QUBO** is the input to the functions **QAOA** and **VQE** from **qiskit**. They translate the problem to the needed *Hamiltonian* and solve it using a hybrid model. In our case, we test two classical solvers the Simultaneous Perturbation Stochastic Approximation (**SPSA**) and Constrained Optimization BY Linear Approximation (**COBYLA**).
+
+*Fig. 2* shows the training of the S -model and the S -NEW model (explained in **Section 3**) using VQE and QAOA. Here, it is observed that the VQE has a smoother way to come to the optimal point for both cases COBYLA and SPSA while the QAOA for 1 repetition is not comming to the optimal point contrary to the 2 repetitions where the optimal is found.
+
+<figure>
+<img src="./Images/Training.png" width="1000"> 
+<figcaption align = "center"><b>Fig.2 - Cost function optimization using two quantum algorithms VQE and QAOA with classical optimizers SPSA and COBYLA. The red results are for the model S while the green for a novel approach explained in **Section 3** a</b></figcaption>
+</figure>
+<br>
+<br>
 
 ## Proposal 
 This project uses different methods and techniques of Quantum computing and Quantum machine learning as:
