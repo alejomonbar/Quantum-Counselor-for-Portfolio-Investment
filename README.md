@@ -2,9 +2,9 @@
 
 
 # Quantum Counselor for Portfolio Investment
-The Quantum Counselor for portfolio investment is a tool with two main objectives: forecasting the trend of assets price and optimizing portfolio returns both using quantum computing techniques. For the case of the forecasting method, we use a hybrid method that combines a deep learning model of classical LSTM layers with quantum layers. For the case of portfolio optimization, the quantum algorithms of QAOA and VQE are used to solve the problem and will be compared with CPLEX, a classical solver. Both tools are deeply connected because the forecasted price of the different assets is used for the cost function construction.
+The Quantum Counselor for portfolio investment is a tool with two main objectives: forecasting the trend of assets price and optimizing portfolio returns both using quantum computing techniques. For the case of the forecasting method, we use a hybrid method for a Quantum neural network (**QNN**) that combines a deep learning model of classical LSTM layers with quantum layers. For the case of portfolio optimization, we convert the optimization problem into a Quadratic unconstrained binary optimization (**QUBO**) problem and using the quantum algorithms of Quantum Approximate Optimization Algorithm (**QAOA**) and the variational quantum eigensolver (**VQE**) solve the problem. Additionally, we use the classical solver CPLEX for comparison with the other two methods. Both tools are deeply connected because the forecasted price of the different assets is used for the optimization protfolio cost function construction.
 
-<center><img src="./Images/Counselor2.png" width="400"></center>
+<center><img src="./Images/Diagram2.png" width="900"></center>
 
 # Outline
 
@@ -33,14 +33,44 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 
 # 1. Stocks forecasting using a QNN
 
+One of the principal requirements for portfolio optimization is the ability to predict the price trend *P_{n,t}* for *N* assets during some periods of time. In this work, our first objective is to show the capabilities of a quantum neural network (QNN) to predict the trend of a set of stocks. Specifically, we select 8 stocks from 8 conglomerates based on the dataset of Xu et al. [[2]](https://aclanthology.org/P18-1183/): 
+
+- Basic Materials: TOTAL S.A. "TOT"
+
+- Consumer Goods: Appel Inc. "AAPL"
+
+- Healthcare: AbbVie Inc. "ABBV"
+
+- Services: Wall-Mart Stores Inc. "WMT"
+
+- Utilites: Duke energy corporation "DUK"
+
+- Financial: HSBS Holding pcl "HSBC"
+
+- Industrial Goods: ABB Ltd. "ABB"
+
+- Technology: China Mobile Limited "CHL"
+
+The information comes from Sep 2012 to Sep 2017 with daily Technical information of Open, High, Low, Close, Adj Close, and Volume for the stocks price.
+
+<figure>
+<img src="./Images/Stocks.png" width="1000"> 
+<figcaption align = "center"><b>Fig.1 - Stocks trend for the 8 conglomerates. We used the closed price as the prediction parameter.</b></figcaption>
+</figure>
+<br>
+<br>
+
+
+From here, we use a **QNN** to predict the trend in the price of the stock. The results of the forecasting are stored in **stocks_forecasting**
+
 We design a quantum circuit  for encoding all the values in the data set, using 30 data per instance with this proposal we reduce to an output of 10.
 
-<center><img src="./Images/encoding.png" width="800"></center>
+<img src="./Images/QNN-ea.png" width="900"> 
 
-The ansatz for the QNN is using the following structure, and using for the mdoel 2 layers of this ansatz.
+The ansatz for the QNN follows the structure of the figure below structure, and using for the model 2 layers of this ansatz.
 
 
-<center><img src="./Images/qvc_layer.png " width="800"></center>
+
 
 
 we design two proposal of solutions with this quantum layer.
