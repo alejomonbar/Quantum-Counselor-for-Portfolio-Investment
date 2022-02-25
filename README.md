@@ -25,7 +25,7 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
     2.2 Model S  (5 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
 
-    2.3 Model M  (7 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+    2.3 Model M  (8 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
 
 3. A novel approach for the Portfolio Optimization
@@ -133,8 +133,24 @@ The equation shown above is encoded using the function *Model* from **docplex** 
 <br>
 
 ## 2.1 Model XS
+The Table below shows the results of the XS model, with 3 stocks "AAPL","ABB", and "ABBV". We consider a transaction cost of 0.1% and holding period of 30 (this means that the stock should remain with us 30 days). From the perspective of the forecasting data, we take the last two months of prediction. 
 
-<img src="./Images/XS-resume.png" width="1000"> 
+<img src="./Images/XS-resume.png" width="800"> 
+
+## 2.2 Model S
+Model S is similar to model XS the only condition that changes are the stocks chosen in this case they are "AAPL","ABB", "ABBV","TOT", and "DUK". In this case, the only quantum algorithm that converges to the optimal is QAOA with SPSA. However, we only consider one repetition of the mixer and the Hamiltonian of this case, as we show un Fig.2 for 2 repetitions the QAOA converges. Similarly, the VQE in this case takes an ansatz from the function *TwoLocal* and it is truncated to a maximum number of 50 iterations, increasing the number of iterations will make the 
+
+<img src="./Images/S-resume.png" width="800"> 
+
+## 2.3 Model M
+Model M is similar to model S and XS the only variation is the stocks chosen in this case they are "AAPL","ABB", "ABBV","CHL", "DUK", "HSBC", "TOT", and "WMT". In this case, as the problem size includes 24 qubits and we found problems executing it on the IBM quantum simulator *ibmq_quasm_simulator*, we have to run it locally and we could only get results for QAOA COBYLA and SPSA, in the coming days the results for VQE will be presented. Eventhough QAOA does not converge for any of the two cases, it only uses one repetiton incresing this number and the maximum number of iterations will improve the result. However, this is still a good approximation of the optimal.
+
+<img src="./Images/M-resume.png" width="800"> 
+
+# 3. A novel approach to the portfolio cost function
+
+<img src="./Images/New-Cost-Function1.png" width="800"> 
+
 
 ## Proposal 
 This project uses different methods and techniques of Quantum computing and Quantum machine learning as:
