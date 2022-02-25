@@ -8,7 +8,7 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 
 ## Portfolio optimization
 
-For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or method in the work of Mugel et. al [1] where the cost function is described by:
+For portfolio optimization, we use the modern portfolio theory where it is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or method in the work of Mugel et. al [1] where the cost function is described by:
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
