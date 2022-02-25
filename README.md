@@ -4,11 +4,41 @@
 # Quantum Counselor for Portfolio Investment
 The Quantum Counselor for portfolio investment is a tool with two main objectives: forecasting the trend of assets price and optimizing portfolio returns both using quantum computing techniques. For the case of the forecasting method, we use a hybrid method that combines a deep learning model of classical LSTM layers with quantum layers. For the case of portfolio optimization, the quantum algorithms of QAOA and VQE are used to solve the problem and will be compared with CPLEX, a classical solver. Both tools are deeply connected because the forecasted price of the different assets is used for the cost function construction.
 
-<center><img src="./Images/Counselor1.png" width="400"></center>
+<center><img src="./Images/Counselor2.png" width="400"></center>
 
-## Portfolio optimization
+# Outline
 
-For portfolio optimization, we use the modern portfolio theory where it is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or method in the work of Mugel et. al [1] where the cost function is described by:
+1. Stocks forecasting using a QNN
+
+
+2. Portfolio Optimization.
+
+
+3. Stocks Selection.
+
+
+4. Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+
+
+5. Model S  (5 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+
+
+6. Model M  (7 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+
+
+7. A novel approach for the Portfolio Optimization
+
+
+8. References
+
+# 1. Stocks forecasting using a QNN
+
+<center><img src="./Images/Stock_predictions.png" width="800"></center>
+
+
+# 2. Portfolio optimization
+
+For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or method in the work of Mugel et al. [<b>[1]<i>](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
