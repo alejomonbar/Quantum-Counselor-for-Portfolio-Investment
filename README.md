@@ -38,11 +38,11 @@ the dependencies are:
 1. Stocks forecasting using a QNN**File:** [stock_price_classical_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_classical_algorithm.ipynb)
 [stock_price_hibryd_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm.ipynb)
 [stock_price_hibryd_algorithm_with_noise.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm_with_noise.ipynb)
-[stock_price_hybrid_quantum _fair_value.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hybrid_quantum _fair_value.ipynb)
+[stock_price_hybrid_quantum_fair_value.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hybrid_quantum_fair_value.ipynb)
 [pennylane_stock_price_hybrid_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/pennylane_stock_price_hybrid_algorithm.ipynb)
 
 **Functions: ** [tfqml.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/tfqml.py)
-[quantum _stock_price_simulation_mean.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/quantum _stock_price_simulation_mean.py)
+[quantum_stock_price_simulation_mean.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/quantum_stock_price_simulation_mean.py)
 [normalization.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/normalization)
 
 
