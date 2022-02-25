@@ -149,6 +149,8 @@ Model M is similar to model S and XS the only variation is the stocks chosen in 
 
 # 3. A novel approach to the portfolio cost function
 
+We introduce two modifications to the objective function that we think will improve the profit reached by a single investment. We call it, the **budget increment opportunity**.
+
 <img src="./Images/New-Cost-Function1.png" width="800"> 
 
 
