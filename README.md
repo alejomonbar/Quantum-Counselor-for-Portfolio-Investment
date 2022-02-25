@@ -20,18 +20,30 @@ and the methods
 - visualization() 
 - save_data()
 
+Scripts:
+- normalization.py script that generate a npy file with the original data after train the model.
+- quantum _stock_price_simulation_mean.py  script to generate 10 trianing of each stocks.
 
 the dependencies are:
 
-| numpy: 1.20.1               | sklearn: 0.24.1          | sympy: 1.7.1                        | 
+| Procesing data              | machine learning         | quantum frame works                 | 
 |-----------------------------| ------------------------ | ----------------------------------- | 
-| pandas: 1.2.3               | cirq : 0.13.1            | pennylane: 0.21.0                   | 
+| numpy: 1.20.1               | sklearn: 0.24.1          | cirq : 0.13.1                       |
+| pandas: 1.2.3               | sympy: 1.7.1             | pennylane: 0.21.0                   | 
 | docplex version:  2.22.213  | tensorflow_quantum: 0.6.1|  qiskit version:  0.19.2            |
 | matplotlib: 3.4.1           | tensorflow: 2.7.0        |  qiskit_optimization version:  0.3.1|
 
 # Outline
 
-1. Stocks forecasting using a QNN
+1. Stocks forecasting using a QNN**File:** [stock_price_classical_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_classical_algorithm.ipynb)
+[stock_price_hibryd_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm.ipynb)
+[stock_price_hibryd_algorithm_with_noise.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm_with_noise.ipynb)
+[stock_price_hybrid_quantum _fair_value.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hybrid_quantum _fair_value.ipynb)
+[pennylane_stock_price_hybrid_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/pennylane_stock_price_hybrid_algorithm.ipynb)
+
+**Functions: ** [tfqml.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/tfqml.py)
+[quantum _stock_price_simulation_mean.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/quantum _stock_price_simulation_mean.py)
+[normalization.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/normalization)
 
 
 2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) **Functions: ** [portfolioFunctions.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/portfolioFunctions.py)
