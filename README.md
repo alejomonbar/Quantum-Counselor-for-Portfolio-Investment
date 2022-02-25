@@ -174,8 +174,8 @@ We introduce two modifications to the objective function that we think will impr
 Here, we present results only for model S. Fig. 3 shows the different investment trajectories based on our new approach. VQE SPSA and CPLEX choose a trajectory that increases to 125% of the budget. This is a strategy that increases the profit with a small risk. Once, the two first periods of good prospects have passed, the budget investment goes back to the maximum budget of 100%. 
 
 <figure>
-<center><img src="./Images/Budget.png" width="400"></center> 
-<figcaption align = "center"><b>Fig.3 - New method investment trayectory </b></figcaption>
+<center><img src="./Images/Budget.png" width="500"></center> 
+<figcaption align = "center"><b>Fig.3 - New method investment trayectory  </b></figcaption>
 </figure>
 <br>
 <br>
@@ -184,8 +184,8 @@ Finally, Fig. 4 shows the profit made with the method described in section 2 and
 
 
 <figure>
-<center><img src="./Images/Profit_per.png" width="400"></center> 
-<figcaption align = "center"><b>Fig.4 - New method investment trayectory </b></figcaption>
+<center><img src="./Images/Profit_per.png" width="800"></center> 
+<figcaption align = "center"><b>Fig.4 - Profit made with the two different approaches</b></figcaption>
 </figure>
 <br>
 <br>
