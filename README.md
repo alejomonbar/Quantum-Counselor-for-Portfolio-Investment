@@ -35,7 +35,8 @@ the dependencies are:
 
 # Outline
 
-1. Stocks forecasting using a QNN**File:** [stock_price_classical_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_classical_algorithm.ipynb)
+1. Stocks forecasting using a QNN
+**File:** [stock_price_classical_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_classical_algorithm.ipynb)
 [stock_price_hibryd_algorithm.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm.ipynb)
 [stock_price_hibryd_algorithm_with_noise.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hibryd_algorithm_with_noise.ipynb)
 [stock_price_hybrid_quantum_fair_value.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/stock_price_hybrid_quantum_fair_value.ipynb)
@@ -45,7 +46,8 @@ the dependencies are:
 [normalization.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/normalization)
 
 
-2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) 
+2. Portfolio Optimization. 
+**File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb) 
 **Functions:** [portfolioFunctions.py](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/portfolioFunctions.py)
 
     2.1 Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
