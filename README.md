@@ -7,19 +7,14 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 <center><img src="./Images/Diagram2.png" width="900"></center>
 
 ### Requirements
-
 A library was built with the name tfqml.py to store all the dependencies, classes and methods that are used in this work, these classes are
-- ClassicalPreprocessing
-	- create_dataset()
-	- preprocessing() 
-- QuantumPreprocessing
-	- convert2circuit()
-	- data2qubits()
-	- print_circuit()
-- CircuitLayer
-	- add_layer()
-- QuantumModel
-	- quantum_circuit()
+
+|ClassicalPreprocessing  | QuantumPreprocessing | CircuitLayer | QuantumModel
+|----------------------- | -------------------- | ------------ | -----------------
+| create_dataset()       | convert2circuit()    | add_layer()  | quantum_circuit()
+| preprocessing()        | data2qubits()        |              |
+|                        | print_circuit()      |              |
+
 
 and the methods 
 - visualization() 
@@ -27,19 +22,12 @@ and the methods
 
 
 the dependencies are:
-- numpy: 1.20.1
-- pandas: 1.2.3
-- matplotlib: 3.4.1
-- sklearn: 0.24.1
-- cirq : 0.13.1
-- tensorflow_quantum: 0.6.1
-- tensorflow: 2.7.0
-- sympy: 1.7.1
-- pennylane: 0.21.0
-- qiskit version:  0.19.2
-- qiskit_optimization version:  0.3.1
-- docplex version:  2.22.213
 
+| numpy: 1.20.1               | sklearn: 0.24.1          | sympy: 1.7.1                        | 
+|-----------------------------| ------------------------ | ----------------------------------- | 
+| pandas: 1.2.3               | cirq : 0.13.1            | pennylane: 0.21.0                   | 
+| docplex version:  2.22.213  | tensorflow_quantum: 0.6.1|  qiskit version:  0.19.2            |
+| matplotlib: 3.4.1           | tensorflow: 2.7.0        |  qiskit_optimization version:  0.3.1|
 
 # Outline
 
@@ -178,10 +166,29 @@ Model M is similar to model S and XS the only variation is the stocks chosen in 
 
 # 3. A novel approach to the portfolio cost function
 
-We introduce two modifications to the objective function that we think will improve the profit reached by a single investment. We call it, the **budget increment opportunity**.
+
+We introduce two modifications to the objective function that we think will improve the profit reached by a single investment. We call it, the **budget increment opportunity**. In this case, we see some situations where the market offers advantages to invest in some specific periods of time. In such periods, we want the budget constraint to be weak, allowing surpassing the budget established in the problem. This move is possible thanks to two considerations, the bare return of all the stocks is high and the uncertainty in the forecasting price of the stocks is low. We call the forecasting uncertainty with the greek letter kappa and it is the mean relative error *mre* of the test cases in the QNN training. The second modification is the addition of a second risk term, this term is based on the uncertainty mentioned before. Therefore, if the forecasting prediction is low for some assets, the optimization will avoid them. The Equation below describes our new approach:
 
 <img src="./Images/New-Cost-Function1.png" width="800"> 
 
+Here, we present results only for model S. Fig. 3 shows the different investment trajectories based on our new approach. VQE SPSA and CPLEX choose a trajectory that increases to 125% of the budget. This is a strategy that increases the profit with a small risk. Once, the two first periods of good prospects have passed, the budget investment goes back to the maximum budget of 100%. 
+
+<figure>
+<center><img src="./Images/Budget.png" width="400"></center> 
+<figcaption align = "center"><b>Fig.3 - New method investment trayectory </b></figcaption>
+</figure>
+<br>
+<br>
+
+Finally, Fig. 4 shows the profit made with the method described in section 2 and our new approach. Here, increasing the budget invested in the two first periods makes a higher profit compared with the first approach.
+
+
+<figure>
+<center><img src="./Images/Profit_per.png" width="400"></center> 
+<figcaption align = "center"><b>Fig.4 - New method investment trayectory </b></figcaption>
+</figure>
+<br>
+<br>
 
 ## Proposal 
 This project uses different methods and techniques of Quantum computing and Quantum machine learning as:
