@@ -79,47 +79,64 @@ The information comes from Sep 2012 to Sep 2017 with daily Technical information
 <br>
 <br>
 
+Creating our hibryd model this is use of an Parametric Quantum circuit (PQC) and classical model using LSTM. Dropout, and Dense functions.The first layer is our proposal which input is 30 parameters per instance and output is 10, followed by LSTM and Dropout layers, at the end a Dense layer to have an output value.
+
+
+We use a noise Parameter Quantum circuit , this is posible use the NoisyPQC method, and is important add repetitions  for the time is 10 and consider a the fag dample_based= True, this las one parameter is improtant to run our noise simulation. More information you can find [here](https://www.tensorflow.org/quantum/api_docs/python/tfq/layers/NoisyPQC)
+
+
+<center><img src="./Images/hybrid_model.png" width="800"></center>
+
+
 
 From here, we use a **QNN** to predict the trend in the price of the stock. The results of the forecasting are stored in **stocks_forecasting**
 
-We design a quantum circuit  for encoding all the values in the data set, using 30 data per instance with this proposal we reduce to an output of 10.
+We design a quantum circuit  for encoding all the values in the data set, using 30 data per instance with this proposal we reduce to an output of 10. The ansatz for the QNN follows the structure of the figure below structure, and using for the model 2 layers of this ansatz.
+
 
 <img src="./Images/QNN-ea.png" width="900"> 
 
-The ansatz for the QNN follows the structure of the figure below structure, and using for the model 2 layers of this ansatz.
 
 
+we design four hybrid proposal of solutions with the first using a PQC:
+- Hybrid Model using Tensorflow Quantum
+- Hybrid Model using Tensorflow Quantum with noise
+- Hybrid Model using Pennylane and Tensorflow
+- Hybryd Model using Tensorflow Quantum and the minimal model.
 
-
-
-we design two proposal of solutions with this quantum layer.
+and two classical propsal using tensorflow , this with a big model and minimal model to predict the same stock.
 
 <center><img src="./Images/models.png" width="800"></center>
 
 
-Using the minimum  parameters for predict the stock.
+Considering the capacity of our PQC we have minimal models of the classical and quantum part with 82 and 80 parameters and we can identify their performance, their error per 1 measurement is shown in the figure below, where using PCA as preprocessing gives us better results in the quantum part giving us a MAE error in half of the test predictions.
 
-<center><img src="./Images/models_minimal.png" width="800"></center>
-
-
-One result of the  classical minimal  model
+<center><img src="./Images/error_min_models.png" width="800"></center>
 
 
-<center><img src="./Images/pred_min_8.png " width="800"></center>
+For the following experiments, the same was done for a more robust model and equivalent values were obtained for both the classical and quantum parts. It should be noted that the classical model uses about 200 thousand parameters and the hybrid model uses only 126 thousand parameters to reach similar results.
 
 
-One result of the  hybrid minimal  model
+<center><img src="./Images/error_models.png " width="800"></center>
 
 
-<center><img src="./Images/pred_min_8_q.png " width="800"></center>
+In addition to the hybrid part for the case of tensorflow quantum a noise is performed, for this implementation it takes about 10 times longer due to the time limit, only 3 stocks were identified to identify the effect that our model could have when used in a real computer. Giving us a case of up to 20% error, increasing 10 times the error for our models.
+
+<center><img src="./Images/error_noise_models.png " width="800"></center>
+
+We focus on the Tensorflow Quantum model, for most of our experiments, since this only takes 3s with respect to the model implemented between pennylane-Tensorflow takes on average 121 seconds, being approximately 40 times what tensorflow quantum takes, therefore in time-limited problems it is better to base the entire project on Tensorflow Quantum.
 
 
-Error between Classic and our  Hybrid proposal
-<center><img src="./Images/error_models.png" width="800"></center>
+<center><img src="./Images/time_model.png" width="800"></center>
 
 
 
-Using more parameters to obtain the less error for all the stocks.
+When reaching the conclusion that we can identify with our proposed model eight different stocks, with a MAE in the worst case close to 7%, we consider that our architecture and circuit design give us enough to be able to continue to the Portfolio optimization stage.
+
+We must emphasize that the model was made in two frameworks: Tensorflow Quantum and Pennylane, the latter gave us from 3 experiments similar results to Tensorflow Quantum. We can confirm that our quantum circuit manages to support as a QNN so that the classical model based on LSTM converges.
+
+
+Finally, we  obtain the prediction for all the stocks with our proposal hybrid model.
 
 <center><img src="./Images/Stock_predictions.png" width="800"></center>
 
@@ -190,38 +207,6 @@ Finally, Fig. 4 shows the profit made with the method described in section 2 and
 <br>
 <br>
 
-## Proposal 
-This project uses different methods and techniques of Quantum computing and Quantum machine learning as:
-
-- QNN,
-- VQE,
-- QAOA.
-
-and classical methods as  ANN, LSTM, Optimizers (Cobyla) 
-
-<center><img src="./Images/methodology.png" width="800"></center>
-
-
-For the case of the Hibryd LSTM we use proposal to design:
-
-<center><img src="./Images/proposal_diagrams.png" width="800"></center>
-
-# Prelimineries result 
-
-## using the first layer as  QNN
-<center><img src="./Images/pred_1.png" width="800"></center>
-
-
-## using the last layer as  QNN
-<center><img src="./Images/pred_f.png" width="800"></center>
-
-## mock data for the portfolio part
-<center><img src="./Images/proposal_1.png" width="800"></center>
-
-
-# Progress
-
-Positive results for each module separately, next step, connect the results of each block and compare the cases of each with their respective classical equivalence.
 
 # References 
 [1] Mugel, S., Kuchkovsky, C., Sánchez, E., Fernández-Lorenzo, S., Luis-Hita, J., Lizaso, E., & Orús, R. (2022). Dynamic portfolio optimization with real datasets using quantum processors and quantum-inspired tensor networks. Physical Review Research, 4(1), 1–13. https://doi.org/10.1103/PhysRevResearch.4.013006.
