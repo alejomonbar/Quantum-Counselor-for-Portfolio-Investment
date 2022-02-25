@@ -17,25 +17,21 @@ The Quantum Counselor for portfolio investment is a tool with two main objective
 1. Stocks forecasting using a QNN
 
 
-2. Portfolio Optimization.
+2. Portfolio Optimization. **File:** [Portfolio-Optimization.ipynb](https://github.com/alejomonbar/Quantum-Counselor-for-Portfolio-Investment/blob/main/Portfolio-Optimization.ipynb)
+
+    2.1 Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
 
-3. Stocks Selection.
+    2.2 Model S  (5 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
 
-4. Model XS (3 Stocks, 2 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+    2.3 Model M  (7 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
 
 
-5. Model S  (5 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
+3. A novel approach for the Portfolio Optimization
 
 
-6. Model M  (7 Stocks, 3 periods), QAOA and VQE with SPSA and COBYLA classical optimizers.
-
-
-7. A novel approach for the Portfolio Optimization
-
-
-8. References
+4. References
 
 # 1. Stocks forecasting using a QNN
 
@@ -121,7 +117,7 @@ The results of three portfolio cases are presented in this section:
 - S model with 5 stocks and 3 periods of time
 - M model with 7 stocks and 3 periods of time.
 
-For portfolio optimization, we use the modern portfolio theory where we is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or cost function in the work of Mugel et al. [[1]](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
+For portfolio optimization, we use the modern portfolio theory where it is wanted to maximize the return of an investment while keeping the risk of losing money low. We based or cost function in the work of Mugel et al. [[1]](https://doi.org/10.1103/PhysRevResearch.4.013006) where the cost function is described by:
 
 <center><img src="./Images/Cost-function.png" width="800"></center>
 
@@ -135,6 +131,10 @@ The equation shown above is encoded using the function *Model* from **docplex** 
 </figure>
 <br>
 <br>
+
+## 2.1 Model XS
+
+<img src="./Images/XS-resume.png" width="1000"> 
 
 ## Proposal 
 This project uses different methods and techniques of Quantum computing and Quantum machine learning as:
